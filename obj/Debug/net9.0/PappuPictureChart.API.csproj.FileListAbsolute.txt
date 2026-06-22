@@ -151,7 +151,6 @@ E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.build.json.cache
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.development.json
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPic.1E9A70DB.Up2Date
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\refint\PappuPictureChart.API.dll
@@ -160,3 +159,4 @@ E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChar
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\ref\PappuPictureChart.API.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Newtonsoft.Json.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Razorpay.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.sourcelink.json
