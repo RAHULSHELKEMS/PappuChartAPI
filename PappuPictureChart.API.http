@@ -1,0 +1,6 @@
+@PappuPictureChart.API_HostAddress = http://localhost:5049
+
+GET {{PappuPictureChart.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

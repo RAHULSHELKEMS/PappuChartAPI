@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Razorpay" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Picture\ball2.png" />
+    <None Include="wwwroot\Picture\balti6.png" />
+    <None Include="wwwroot\Picture\chhata1.png" />
+    <None Include="wwwroot\Picture\diya4.png" />
+    <None Include="wwwroot\Picture\gai5.png" />
+    <None Include="wwwroot\Picture\ghulab9.png" />
+    <None Include="wwwroot\Picture\kabutar11.png" />
+    <None Include="wwwroot\Picture\kharghosh12.png" />
+    <None Include="wwwroot\Picture\lattu8.png" />
+    <None Include="wwwroot\Picture\patang7.png" />
+    <None Include="wwwroot\Picture\suraj3.png" />
+    <None Include="wwwroot\Picture\titali10.png" />
+  </ItemGroup>
+
+</Project>
