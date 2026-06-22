@@ -2,10 +2,8 @@ bin/
 obj/
 .vs/
 .git/
-.gitignore
 
 **/bin
 **/obj
 
-Dockerfile*
 README.md
