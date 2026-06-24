@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PappuPictureChart.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4461764fd4e9f93db8fe99bdc0db78baf3abd4b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3026ca842ad6bfcff64da66f4fdc628e5ddd4efe")]
 [assembly: System.Reflection.AssemblyProductAttribute("PappuPictureChart.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PappuPictureChart.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

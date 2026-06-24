@@ -40,6 +40,10 @@ E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Microsoft.OpenAp
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Mono.TextTemplating.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Newtonsoft.Json.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Npgsql.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Razorpay.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -143,6 +147,7 @@ E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChar
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.csproj.CoreCompileInputs.cache
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.MvcApplicationPartsAssemblyInfo.cs
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.MvcApplicationPartsAssemblyInfo.cache
+E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.sourcelink.json
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\rjimswa.dswa.cache.json
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -157,6 +162,3 @@ E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\refint\PappuPict
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.pdb
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.genruntimeconfig.cache
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\ref\PappuPictureChart.API.dll
-E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Newtonsoft.Json.dll
-E:\PappuPictureChart.API\PappuPictureChart.API\bin\Debug\net9.0\Razorpay.dll
-E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.sourcelink.json

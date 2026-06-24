@@ -73,6 +73,14 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "Razorpay": {
               "target": "Package",
               "version": "[3.0.0, )"
