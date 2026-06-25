@@ -82,19 +82,22 @@ public class GameController : ControllerBase
 
     [Authorize]
     [HttpGet("balance")]
-    public IActionResult Balance()
+    public async Task<IActionResult> Balance()
     {
         var userId = int.Parse(
-            User.Claims.First(x =>
-            x.Type.Contains("nameidentifier")).Value);
+            User.Claims.First(x => x.Type.Contains("nameidentifier")).Value);
 
-        var user = _db.Users.Find(userId);
+        var user = await _db.Users.FindAsync(userId);
+
+        var balance = await _db.WalletTransactions
+            .Where(x => x.UserId == userId)
+            .SumAsync(x => x.Amount);
 
         return Ok(new
         {
             user.Id,
             user.Name,
-            user.Coins
+            Coins = balance
         });
     }
 
