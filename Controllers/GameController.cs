@@ -85,9 +85,8 @@ public class GameController : ControllerBase
     public async Task<IActionResult> Balance()
     {
         var userId = int.Parse(
-            User.Claims.First(x => x.Type.Contains("nameidentifier")).Value);
-
-        var user = await _db.Users.FindAsync(userId);
+            User.Claims.First(x =>
+            x.Type.Contains("nameidentifier")).Value);
 
         var balance = await _db.WalletTransactions
             .Where(x => x.UserId == userId)
@@ -95,8 +94,6 @@ public class GameController : ControllerBase
 
         return Ok(new
         {
-            user.Id,
-            user.Name,
             Coins = balance
         });
     }
