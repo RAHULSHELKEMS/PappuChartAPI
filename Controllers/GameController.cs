@@ -82,26 +82,19 @@ public class GameController : ControllerBase
 
     [Authorize]
     [HttpGet("balance")]
-    public async Task<IActionResult> Balance()
+    public IActionResult Balance()
     {
         var userId = int.Parse(
             User.Claims.First(x =>
             x.Type.Contains("nameidentifier")).Value);
 
-        var user = await _db.Users
-            .FirstOrDefaultAsync(x => x.Id == userId);
-
-        if (user == null)
-            return NotFound(new
-            {
-                Message = "User Not Found"
-            });
+        var user = _db.Users.Find(userId);
 
         return Ok(new
         {
-            UserId = user.Id,
-            Name = user.Name,
-            Coins = user.Coins
+            user.Id,
+            user.Name,
+            user.Coins
         });
     }
 
