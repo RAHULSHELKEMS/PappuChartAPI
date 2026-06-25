@@ -19,10 +19,7 @@ namespace PappuPictureChart.API.Services;
         _db = db;
     }
 
-    public async Task<User?> Register(
-        string name,
-        string mobile,
-        string password)
+    public async Task<User?> Register( string name,string mobile,string password)
     {
         if (await _db.Users.AnyAsync(x => x.Mobile == mobile))
             return null;
@@ -32,7 +29,7 @@ namespace PappuPictureChart.API.Services;
             Name = name,
             Mobile = mobile,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
-            Coins = 100
+            Coins = 50
         };
 
         _db.Users.Add(user);
