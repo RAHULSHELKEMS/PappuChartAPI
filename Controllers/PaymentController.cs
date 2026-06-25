@@ -48,11 +48,8 @@ public class PaymentController : ControllerBase
             return StatusCode(500, ex.ToString());
         }
     }
-
     [HttpGet("checkout")]
-    public IActionResult Checkout(
-        string orderId,
-        decimal amount)
+    public IActionResult Checkout(string orderId, decimal amount)
     {
         string html = $@"
 <html>
@@ -67,7 +64,28 @@ var options = {{
     key: 'rzp_test_T2i5foOFnN8Zaj',
     amount: '{amount * 100}',
     currency: 'INR',
+    name: 'Pappu Picture Chart',
+    description: 'Wallet Recharge',
     order_id: '{orderId}',
+
+    config: {{
+        display: {{
+            blocks: {{
+                upi: {{
+                    name: 'Pay using UPI',
+                    instruments: [
+                        {{
+                            method: 'upi'
+                        }}
+                    ]
+                }}
+            }},
+            sequence: ['block.upi'],
+            preferences: {{
+                show_default_blocks: true
+            }}
+        }}
+    }},
 
     handler: function(response){{
         alert('Payment Successful');
