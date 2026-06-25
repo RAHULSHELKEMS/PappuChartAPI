@@ -233,28 +233,51 @@ public class GameController : ControllerBase
 
 
 
-
-
-
-
     [AllowAnonymous]
     [HttpGet("result")]
-    public IActionResult Result()
+    public async Task<IActionResult> Result()
     {
-        var round = _db.GameRounds
+        var round = await _db.GameRounds
             .Where(x => x.IsCompleted)
             .OrderByDescending(x => x.Id)
-            .FirstOrDefault();
+            .FirstOrDefaultAsync();
 
         if (round == null)
-            return NotFound();
+        {
+            return Ok(new
+            {
+                RoundNumber = 0,
+                ResultPictureId = 0
+            });
+        }
 
         return Ok(new
         {
-            round.RoundNumber,
-            round.ResultPictureId
+            RoundNumber = round.RoundNumber,
+            ResultPictureId = round.ResultPictureId
         });
     }
+
+
+
+    //[AllowAnonymous]
+    //[HttpGet("result")]
+    //public IActionResult Result()
+    //{
+    //    var round = _db.GameRounds
+    //        .Where(x => x.IsCompleted)
+    //        .OrderByDescending(x => x.Id)
+    //        .FirstOrDefault();
+
+    //    if (round == null)
+    //        return NotFound();
+
+    //    return Ok(new
+    //    {
+    //        round.RoundNumber,
+    //        round.ResultPictureId
+    //    });
+    //}
 
     [HttpGet("last-result")]
     public async Task<IActionResult> LastResult()
