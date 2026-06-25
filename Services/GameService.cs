@@ -17,10 +17,7 @@ public class GameService
         _db = db;
     }
 
-
-    public async Task PlaceMultiBet(
-    int userId,
-    BetRequest request)
+    public async Task PlaceMultiBet(int userId, BetRequest request)
     {
         var user = await _db.Users.FindAsync(userId);
 
@@ -43,10 +40,47 @@ public class GameService
             });
         }
 
-        user.Coins -= totalCoins;
+        user.Coins = user.Coins - totalCoins;
+
+        _db.Transactions.Add(new Transaction
+        {
+            UserId = userId,
+            Coins = totalCoins,
+            Type = "Bet",
+            Description = $"Bet placed on Round {request.RoundId}"
+        });
 
         await _db.SaveChangesAsync();
     }
+
+
+    //public async Task PlaceMultiBet( int userId, BetRequest request)
+    //{
+    //    var user = await _db.Users.FindAsync(userId);
+
+    //    if (user == null)
+    //        throw new Exception("User Not Found");
+
+    //    decimal totalCoins = request.Bets.Sum(x => x.Coins);
+
+    //    if (user.Coins < totalCoins)
+    //        throw new Exception("Insufficient Coins");
+
+    //    foreach (var bet in request.Bets)
+    //    {
+    //        _db.Bets.Add(new Bet
+    //        {
+    //            UserId = userId,
+    //            RoundId = request.RoundId,
+    //            PictureId = bet.PictureId,
+    //            Coins = bet.Coins
+    //        });
+    //    }
+
+    //    user.Coins -= totalCoins;
+
+    //    await _db.SaveChangesAsync();
+    //}
 
     //public async Task PlaceMultiBet(int userId, BetRequest request)
     //{
@@ -111,9 +145,10 @@ public class GameService
 
         return result.PictureId;
     }
-    public async Task DistributeWinning(
-        int roundId,
-        int resultPictureId)
+
+
+
+    public async Task DistributeWinning(int roundId,int resultPictureId)
     {
         var winners = await _db.Bets
             .Where(x =>

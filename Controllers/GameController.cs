@@ -44,6 +44,8 @@ public class GameController : ControllerBase
 
         return Ok(pictures);
     }
+
+
     [Authorize]
     [HttpPost("bet")]
     public async Task<IActionResult> PlaceBet(BetRequest request)
@@ -56,6 +58,8 @@ public class GameController : ControllerBase
 
         return Ok("Bet Placed");
     }
+
+
 
     [Authorize]
     [HttpGet("balance")]
@@ -295,6 +299,8 @@ public class GameController : ControllerBase
             PictureId = round.ResultPictureId
         });
     }
+
+
     [HttpGet("last-results")]
     public IActionResult LastResults()
     {
@@ -341,6 +347,13 @@ public class GameController : ControllerBase
             Message = "Coins Added Successfully"
         });
     }
+
+
+
+
+
+
+
     [HttpGet("checkout")]
     public IActionResult Checkout(
     string orderId,
