@@ -54,11 +54,16 @@ public class PaymentController : ControllerBase
         string html = $@"
 <html>
 <head>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://checkout.razorpay.com/v1/checkout.js'></script>
 </head>
 <body>
 
+<button id='payBtn'>Pay Now</button>
+
 <script>
+
+document.getElementById('payBtn').onclick = function(e) {{
 
 var options = {{
     key: 'rzp_test_T2i5foOFnN8Zaj',
@@ -68,32 +73,26 @@ var options = {{
     description: 'Wallet Recharge',
     order_id: '{orderId}',
 
-    config: {{
-        display: {{
-            blocks: {{
-                upi: {{
-                    name: 'Pay using UPI',
-                    instruments: [
-                        {{
-                            method: 'upi'
-                        }}
-                    ]
-                }}
-            }},
-            sequence: ['block.upi'],
-            preferences: {{
-                show_default_blocks: true
-            }}
-        }}
+    prefill: {{
+        contact: '',
+        email: ''
     }},
 
-    handler: function(response){{
+    theme: {{
+        color: '#3399cc'
+    }},
+
+    handler: function(response) {{
         alert('Payment Successful');
     }}
 }};
 
 var rzp = new Razorpay(options);
 rzp.open();
+
+e.preventDefault();
+
+}}
 
 </script>
 
