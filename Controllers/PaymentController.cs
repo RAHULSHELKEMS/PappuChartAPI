@@ -10,38 +10,44 @@ public class PaymentController : ControllerBase
     {
         try
         {
-            RazorpayClient client =
-                new RazorpayClient(
-                      "rzp_test_T2i5foOFnN8Zaj",
-                      "yrTO7aywXy21hvR2h6ic8YCW");
+            if (request == null || request.Amount <= 0)
+            {
+                return BadRequest(new
+                {
+                    Message = "Invalid Amount"
+                });
+            }
 
-            Dictionary<string, object> options = new();
+            var client = new RazorpayClient(
+                "rzp_test_T2i5foOFnN8Zaj",
+                "yrTO7aywXy21hvR2h6ic8YCW");
 
-            options.Add(
-                "amount",
-                Convert.ToInt32(request.Amount * 100));
+            Dictionary<string, object> options = new()
+            {
+                { "amount", (int)(request.Amount * 100) },
+                { "currency", "INR" },
+                { "receipt", Guid.NewGuid().ToString("N")[..20] }
+            };
 
-            options.Add(
-                "currency",
-                "INR");
-
-            options.Add(
-                "receipt",
-                Guid.NewGuid().ToString("N").Substring(0, 20));
-
-            Order order =
-                client.Order.Create(options);
+            Order order = client.Order.Create(options);
 
             return Ok(new
             {
-                orderId = order["id"].ToString(),
-                amount = order["amount"].ToString(),
-                key = "rzp_test_T2i5foOFnN8Zaj"
+                Success = true,
+                OrderId = order["id"].ToString(),
+                Amount = order["amount"].ToString(),
+                Currency = order["currency"].ToString(),
+                Key = "rzp_test_T2i5foOFnN8Zaj"
             });
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return StatusCode(500, new
+            {
+                Success = false,
+                Message = ex.Message,
+                Error = ex.ToString()
+            });
         }
     }
 }
@@ -50,7 +56,6 @@ public class CreateOrderRequest
 {
     public decimal Amount { get; set; }
 }
-
 
 //using Microsoft.AspNetCore.Mvc;
 //using Newtonsoft.Json.Linq;
