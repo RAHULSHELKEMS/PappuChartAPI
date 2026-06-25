@@ -162,3 +162,4 @@ E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\refint\PappuPict
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.pdb
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\PappuPictureChart.API.genruntimeconfig.cache
 E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\ref\PappuPictureChart.API.dll
+E:\PappuPictureChart.API\PappuPictureChart.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

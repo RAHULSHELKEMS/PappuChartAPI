@@ -1,0 +1,12 @@
+wwwroot\Picture\ball2.png
+wwwroot\Picture\balti6.png
+wwwroot\Picture\chhata1.png
+wwwroot\Picture\diya4.png
+wwwroot\Picture\gai5.png
+wwwroot\Picture\ghulab9.png
+wwwroot\Picture\kabutar11.png
+wwwroot\Picture\kharghosh12.png
+wwwroot\Picture\lattu8.png
+wwwroot\Picture\patang7.png
+wwwroot\Picture\suraj3.png
+wwwroot\Picture\titali10.png

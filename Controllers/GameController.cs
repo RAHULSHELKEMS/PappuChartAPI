@@ -75,25 +75,25 @@ public class GameController : ControllerBase
             user.Coins
         });
     }
+
+
     [HttpGet("current-round")]
     public async Task<IActionResult> GetCurrentRound()
     {
+        var now = DateTime.UtcNow;
+
         var round = await _db.GameRounds
             .Where(x => !x.IsCompleted)
             .OrderByDescending(x => x.Id)
             .FirstOrDefaultAsync();
 
-        // If no active round, create one automatically
         if (round == null)
         {
-            int nextRoundNumber =
-                await _db.GameRounds.CountAsync() + 1;
-
             round = new GameRound
             {
-                RoundNumber = nextRoundNumber,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddMinutes(3),
+                RoundNumber = await _db.GameRounds.CountAsync() + 1,
+                StartTime = now,
+                EndTime = now.AddMinutes(3),
                 IsCompleted = false
             };
 
@@ -101,29 +101,22 @@ public class GameController : ControllerBase
             await _db.SaveChangesAsync();
         }
 
-        var remaining =
-            (int)(round.EndTime - DateTime.Now).TotalSeconds;
-
-        // Auto close and start next round
-        if (remaining <= 0)
+        if (round.EndTime <= now)
         {
-            int result =
-                await _game.CalculateResult(round.Id);
+            int result = await _game.CalculateResult(round.Id);
 
             round.ResultPictureId = result;
             round.IsCompleted = true;
 
-            await _game.DistributeWinning(
-                round.Id,
-                result);
+            await _game.DistributeWinning(round.Id, result);
 
             await _db.SaveChangesAsync();
 
             var newRound = new GameRound
             {
                 RoundNumber = round.RoundNumber + 1,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddMinutes(3),
+                StartTime = now,
+                EndTime = now.AddMinutes(3),
                 IsCompleted = false
             };
 
@@ -139,9 +132,11 @@ public class GameController : ControllerBase
             });
         }
 
+        var remainingSeconds =
+            Math.Max(0, (int)(round.EndTime - now).TotalSeconds);
+
         var lastResult = await _db.GameRounds
-            .Where(x => x.IsCompleted &&
-                        x.ResultPictureId != null)
+            .Where(x => x.IsCompleted && x.ResultPictureId != null)
             .OrderByDescending(x => x.Id)
             .Select(x => x.ResultPictureId)
             .FirstOrDefaultAsync();
@@ -150,10 +145,98 @@ public class GameController : ControllerBase
         {
             RoundId = round.Id,
             RoundNumber = round.RoundNumber,
-            RemainingSeconds = remaining,
+            RemainingSeconds = remainingSeconds,
             LastResult = lastResult
         });
     }
+
+
+    //[HttpGet("current-round")]
+    //public async Task<IActionResult> GetCurrentRound()
+    //{
+    //    var round = await _db.GameRounds
+    //        .Where(x => !x.IsCompleted)
+    //        .OrderByDescending(x => x.Id)
+    //        .FirstOrDefaultAsync();
+
+    //    // If no active round, create one automatically
+    //    if (round == null)
+    //    {
+    //        int nextRoundNumber =
+    //            await _db.GameRounds.CountAsync() + 1;
+
+    //        round = new GameRound
+    //        {
+    //            RoundNumber = nextRoundNumber,
+    //            StartTime = DateTime.Now,
+    //            EndTime = DateTime.Now.AddMinutes(3),
+    //            IsCompleted = false
+    //        };
+
+    //        _db.GameRounds.Add(round);
+    //        await _db.SaveChangesAsync();
+    //    }
+
+    //    var remaining =
+    //        (int)(round.EndTime - DateTime.Now).TotalSeconds;
+
+    //    // Auto close and start next round
+    //    if (remaining <= 0)
+    //    {
+    //        int result =
+    //            await _game.CalculateResult(round.Id);
+
+    //        round.ResultPictureId = result;
+    //        round.IsCompleted = true;
+
+    //        await _game.DistributeWinning(
+    //            round.Id,
+    //            result);
+
+    //        await _db.SaveChangesAsync();
+
+    //        var newRound = new GameRound
+    //        {
+    //            RoundNumber = round.RoundNumber + 1,
+    //            StartTime = DateTime.Now,
+    //            EndTime = DateTime.Now.AddMinutes(3),
+    //            IsCompleted = false
+    //        };
+
+    //        _db.GameRounds.Add(newRound);
+    //        await _db.SaveChangesAsync();
+
+    //        return Ok(new
+    //        {
+    //            RoundId = newRound.Id,
+    //            RoundNumber = newRound.RoundNumber,
+    //            RemainingSeconds = 180,
+    //            LastResult = result
+    //        });
+    //    }
+
+    //    var lastResult = await _db.GameRounds
+    //        .Where(x => x.IsCompleted &&
+    //                    x.ResultPictureId != null)
+    //        .OrderByDescending(x => x.Id)
+    //        .Select(x => x.ResultPictureId)
+    //        .FirstOrDefaultAsync();
+
+    //    return Ok(new
+    //    {
+    //        RoundId = round.Id,
+    //        RoundNumber = round.RoundNumber,
+    //        RemainingSeconds = remaining,
+    //        LastResult = lastResult
+    //    });
+    //}
+
+
+
+
+
+
+
     [AllowAnonymous]
     [HttpGet("result")]
     public IActionResult Result()
