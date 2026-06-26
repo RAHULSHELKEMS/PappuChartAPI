@@ -52,45 +52,98 @@ public class PaymentController : ControllerBase
     public IActionResult Checkout(string orderId, decimal amount)
     {
         string html = $@"
+<!DOCTYPE html>
 <html>
 <head>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Pappu Picture Chart</title>
 <script src='https://checkout.razorpay.com/v1/checkout.js'></script>
+<style>
+body {{
+    margin:0;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial;
+}}
+
+button {{
+    width:250px;
+    height:55px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    background:#3399cc;
+    color:white;
+    font-weight:bold;
+}}
+</style>
 </head>
+
 <body>
 
-<button id='payBtn'>Pay Now</button>
+<button id='payBtn'>Pay with UPI / GPay / PhonePe</button>
 
 <script>
 
-document.getElementById('payBtn').onclick = function(e) {{
+document.getElementById('payBtn').onclick = function () {{
 
 var options = {{
-    key: 'rzp_test_T2i5foOFnN8Zaj',
-    amount: '{amount * 100}',
+    key: 'rzp_live_YOUR_KEY', // Use Live Key in production
+    amount: '{(int)(amount * 100)}',
     currency: 'INR',
     name: 'Pappu Picture Chart',
     description: 'Wallet Recharge',
+    image: '',
     order_id: '{orderId}',
 
     prefill: {{
-        contact: '',
-        email: ''
+        name: '',
+        email: '',
+        contact: ''
+    }},
+
+    notes: {{
+        app: 'Pappu Picture Chart'
     }},
 
     theme: {{
         color: '#3399cc'
     }},
 
-    handler: function(response) {{
+    retry: {{
+        enabled: true,
+        max_count: 3
+    }},
+
+    modal: {{
+        escape: false,
+        ondismiss: function(){{
+            console.log('Payment Closed');
+        }}
+    }},
+
+    handler: function(response){{
         alert('Payment Successful');
+
+        window.location =
+        '/payment-success?paymentId=' +
+        response.razorpay_payment_id +
+        '&orderId=' +
+        response.razorpay_order_id;
     }}
 }};
 
 var rzp = new Razorpay(options);
-rzp.open();
 
-e.preventDefault();
+rzp.on('payment.failed', function (response) {{
+    alert('Payment Failed');
+}});
+
+rzp.open();
 
 }}
 
